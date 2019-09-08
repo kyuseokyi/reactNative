@@ -1,16 +1,8 @@
-import React from 'react';
-import { AppLoading, Font, Asset } from "expo";
+import React, { Component } from 'react';
+import { AppLoading } from "expo";
+import * as Font from 'expo-font';
 import { Ionicons } from "@expo/vector-icons";
-//import { StyleSheet, Text, View } from 'react-native';
 import TabNavigation from "./navigation/TabNavigation";
-
-// export default function App() {
-//   return (
-//     <View style={styles.container}>
-//       <Text>Open up App.js to start working on your app!</Text>
-//     </View>
-//   );
-// }
 
 export default class App extends React.Component {
   state = {
@@ -26,7 +18,7 @@ export default class App extends React.Component {
       ...Ionicons.font
     });
     // await Asset.loadAsync([
-    //
+    //   require("images/icon.png")
     // ]);
   };
 
@@ -35,10 +27,12 @@ export default class App extends React.Component {
     if (loaded) {
       return <TabNavigation/>
     } else {
-      return (<AppLoading
-          startAsync={this.loadAssets}
-          onError={this.handleError}
-          onFinish={this.handleLoaded}/>
+      return (
+          <AppLoading
+            startAsync={ this.loadAssets }
+            onError={ this.handleError }
+            onFinish={ this.handleLoaded }
+          />
       );
     }
   }

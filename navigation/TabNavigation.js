@@ -1,25 +1,45 @@
-import { createBottomTabNavigator } from "react-navigation";
+import React from "react";
+import { Platform } from "react-native";
+import { createBottomTabNavigator, createAppContainer } from "react-navigation";
 import MoviesScreen from "../screens/Movies"
 import TVScreen from "../screens/TV"
 import SearchScreen from "../screens/Search"
-import {BG_COLOR} from "../constants/Colors";
+import { BG_COLOR, WHITE, ACTIVE_COLOR, GREY_COLOR, INACTIVE_COLOR} from "../constants/Colors";
+import TabBarIcon from "../components/TabBarIcons";
 
-const TabNavigation = createBottomTabNavigator(
-    {
-        Movies: MoviesScreen,
-        TV: TVScreen,
-        Search: SeearchScreen
+const TabNavigation = createBottomTabNavigator({
+        Movie: {
+            screen: MoviesScreen,
+            navigationOptions: {
+                tabBarIcon: ({focused}) => (
+                    <TabBarIcon focused={focused} name={Platform.OS === "ios" ? "ios-film" : "md-film"}/>
+                )
+            }
+        },
+        TV: {
+            screen: TVScreen,
+            navigationOptions: {
+                tabBarIcon: ({focused}) => (
+                    <TabBarIcon focused={focused} name={Platform.OS === "ios" ? "ios-tv" : "md-tv"}/>
+                )
+            }
+        },
+        Search: {
+            screen: SearchScreen,
+            navigationOptions: {
+                tabBarIcon: ({focused}) => (
+                    <TabBarIcon focused={focused} name={Platform.OS === "ios" ? "ios-search" : "md-search"}/>
+                )
+            }
+        }
     },
     {
         tabBarOptions: {
             showLabel: false,
             style: {
-                backgroundColor: BG_COLOR
+                backgroundColor:  BG_COLOR
             }
         }
+    });
 
-    }
-
-);
-
-export default createBottomTabNavigator(TabNavigation);
+export default createAppContainer(TabNavigation);
