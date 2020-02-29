@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { AppLoading } from "expo";
 import * as Font from 'expo-font';
 import { Ionicons } from "@expo/vector-icons";
-import TabNavigation from "./navigation/TabNavigation";
+//import TabNavigation from "./navigation/TabNavigation";
+import MainNavigation from "./navigation/MainNavigation";
 
 export default class App extends React.Component {
   state = {
@@ -21,11 +22,12 @@ export default class App extends React.Component {
     //   require("images/icon.png")
     // ]);
   };
-
+Ó
   render() {
     const { loaded } = this.state;
     if (loaded) {
-      return <TabNavigation/>
+      //return <TabNavigation/>
+      return <MainNavigation/>
     } else {
       return (
           <AppLoading
