@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { AppLoading } from "expo";
+import { StatusBar } from "react-native";
 import * as Font from 'expo-font';
 import { Ionicons } from "@expo/vector-icons";
 //import TabNavigation from "./navigation/TabNavigation";
@@ -27,7 +28,13 @@ export default class App extends React.Component {
     const { loaded } = this.state;
     if (loaded) {
       //return <TabNavigation/>
-      return <MainNavigation/>
+      return (
+          <>
+            <StatusBar barStyle="light-content"/>
+            <MainNavigation/>
+          </>
+      );
+
     } else {
       return (
           <AppLoading
